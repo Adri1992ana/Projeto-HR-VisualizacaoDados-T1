@@ -1,0 +1,7 @@
+SELECT first_name, region_name, city, country_name
+FROM hr.employees
+LEFT JOIN hr.departments ON hr.employees.department_id = hr.departments.department_id
+LEFT JOIN hr.locations ON hr.departments.location_id = hr.locations.location_id
+LEFT JOIN hr.countries ON hr.locations.country_id = hr.countries.country_id
+LEFT JOIN hr.regions ON hr.countries.region_id = hr.regions.region_id
+WHERE region_name IS NOT NULL
