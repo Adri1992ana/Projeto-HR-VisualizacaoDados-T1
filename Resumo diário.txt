@@ -40,4 +40,53 @@ Deu certo. Deu 106 dados corretos e 1 departamento com nome null
 Isso faz total sentido, aliás — é exatamente o comportamento esperado do LEFT JOIN: ele traz todos os funcionários com salário preenchido, mesmo que algum não tenha departamento vinculado (por isso aquele "null" aparece ali, ao invés de a linha simplesmente desaparecer, como aconteceria com um INNER JOIN).
 Isso é até um ponto interessante para mencionar depois no README ou no vídeo — mostra que você entendeu na prática a diferença entre LEFT JOIN e INNER JOIN.
 
- 
+ Query 2:
+
+
+
+ -------
+ Fiz um print(df_cargo_salario.info()), retornou 3 colunas (SALARY, DEPARTMENT_NAME, JOB_TITLE), 107 linhas (0 a 106)
+ Fiz um segundo print(df_regiao_salario.info()), retornou 4 colunas ( FIRST_NAME, REGION_NAME, CITY, COUNTRY_NAME), 106 linhas (0 a 105)
+
+ -------------
+
+Ao fazer a query 1, notei que havia um dado nulo no df_cargo_salario, e ao realizar a conferÊncia dos dados, foi identificado 
+um dado nulo na tabela HR.DEPARTMENTS, na coluna DEPARTMENT_NAME. No df_regiao_salario todos os dados são válidos.
+
+Não há dados duplicados nos DataFrames.
+-------
+
+Para criar o gráfico, pesquisei qual seria mais adequado e estratégico, e escolhi o boxplot, para poder responder mais 
+perguntas e explorar mais dados de uma única vez, por agurpar departamentos.
+
+---------
+Ao fazer o GROUPBY, deu erro de sintaxe pois, a primeira query que fiz no freeSQL foi com o SELECT em letras minusculas.
+
+
+
+# Instalação (se necessário)
+pip install pandas openpyxl
+
+# Importação e Carregamento
+import pandas as pd
+df = pd.read_excel(
+    'tabela_vendas_ZePequeno.xlsx'
+)
+print(df.shape)
+print(df.dtypes)
+
+# Verificação Inicial
+df.head()
+df.info()
+df.describe()
+
+
+ Análise de Outliers
+
+media = df['Valor_Venda'].mean()
+std   = df['Valor_Venda'].std()
+
+outliers = df[df['Valor_Venda'] > media + 2*std]
+
+print(f"Outliers encontrados: {len(outliers)}")
+outliers.head()
