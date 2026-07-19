@@ -4,7 +4,7 @@
 --           LOCATIONS.COUNTRY_ID = COUNTRIES.COUNTRY_ID
 --           COUNTRIES.REGION_ID = REGIONS.REGION_ID
 
-SELECT first_name, region_name, city, country_name
+SELECT first_name, salary, region_name, city, country_name
 FROM hr.employees
 LEFT JOIN hr.departments ON hr.employees.department_id = hr.departments.department_id
 LEFT JOIN hr.locations ON hr.departments.location_id = hr.locations.location_id

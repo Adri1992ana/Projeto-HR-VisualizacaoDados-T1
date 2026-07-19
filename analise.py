@@ -18,6 +18,7 @@ print(df_regiao_salario.info())
 print(df_cargo_salario.info())
 
 print(df_cargo_salario.dtypes)
+
 print(df_regiao_salario.shape[0])
 
 # 3 Estatisticas descritivas dos salários por cargo --

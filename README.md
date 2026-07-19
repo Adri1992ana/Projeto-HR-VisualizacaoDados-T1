@@ -6,9 +6,9 @@
 # Análise de Dados de RH — Salários, Cargos e Distribuição Regional
 
 ## Aluna / Turma
- Adriana Silva Dias de Souza -
- Curso: Visualização de Dados e Business Intelligence
- Turma: QA VDBI 2026/1 2
+Adriana Silva Dias de Souza -
+Curso: Visualização de Dados e Business Intelligence
+Turma: QA VDBI 2026/1 2
 
 ## Objetivo do trabalho
 
@@ -16,9 +16,9 @@ Este projeto final tem como objetivo explorar e identificar a distribuição de 
 
 ## Tabelas utilizadas
 
-- **HR.EMPLOYEES**: colunas usadas foram `FIRST_NAME` e `SALARY`. Conexão com `HR.DEPARTMENTS` pela coluna `DEPARTMENT_ID`.
+- **HR.EMPLOYEES**: colunas usadas foram `FIRST_NAME`, `SALARY`, `DEPARTMENT_ID` e `JOB_ID`. Conexão com `HR.DEPARTMENTS` pela coluna `DEPARTMENT_ID` e à `HR.JOBS` pela coluna `JOB_ID`.
 - **HR.DEPARTMENTS**: colunas usadas foram `DEPARTMENT_NAME` e `DEPARTMENT_ID`. Conexão com `HR.LOCATIONS` pela coluna `LOCATION_ID`.
-- **HR.JOBS**: coluna usada foi `JOB_TITLE`. Conexão com `HR.EMPLOYEES` pela coluna `JOB_ID`.
+- **HR.JOBS**: colunas usadas foram `JOB_ID` e `JOB_TITLE`. Conexão com `HR.EMPLOYEES` pela coluna `JOB_ID`.
 - **HR.LOCATIONS**: colunas usadas foram `LOCATION_ID` e `CITY`. Conexão com `HR.COUNTRIES` pela coluna `COUNTRY_ID`.
 - **HR.COUNTRIES**: coluna usada foi `COUNTRY_NAME`. Conexão com `HR.LOCATIONS` pela coluna `COUNTRY_ID` e com `HR.REGIONS` pela coluna `REGION_ID`.
 - **HR.REGIONS**: coluna usada foi `REGION_NAME`. Conexão com `HR.COUNTRIES` pela coluna `REGION_ID`.
@@ -34,7 +34,7 @@ Conexões:
 - EMPLOYEES.JOB_ID = JOBS.JOB_ID
 
 ### Query 2 — Funcionários por Região
-Objetivo: analisar a distribuição geográfica dos funcionários.
+Objetivo: analisar salários e a distribuição geográfica dos funcionários.
 Tabelas: EMPLOYEES, DEPARTMENTS, LOCATIONS, COUNTRIES, REGIONS (LEFT JOIN)
 Filtro: `WHERE region_name IS NOT NULL`
 Conexões:
@@ -43,7 +43,7 @@ Conexões:
 - LOCATIONS.COUNTRY_ID = COUNTRIES.COUNTRY_ID
 - COUNTRIES.REGION_ID = REGIONS.REGION_ID
 
-Os scripts completos estão salvos nos arquivos `query_01.sql` e `query_02.sql.
+Os scripts completos estão salvos nos arquivos `query_01.sql` e `query_02.sql`.
 
 ## Análise em Python (EDA)
 
@@ -53,14 +53,13 @@ Etapas realizadas:
 - Conferência inicial dos dados com `.head()`, `.info()` e `.dtypes`
 - Verificação de valores nulos com `.isnull().sum()`: foi encontrado 1 valor nulo na coluna `DEPARTMENT_NAME` (na Query 1). Na Query 2, todos os dados estavam completos.
 - Verificação de duplicatas com `.duplicated().sum()`: não foram encontrados dados duplicados.
-- Estatísticas descritivas com `.describe()` na coluna de salário (107 registros):
-  - Média: **6461,83**
-  - Mediana: **6200,00**
-  - Mínimo: **2100,00**
-  - Máximo: **24000,00**
-  - Desvio padrão: 3909,58
-  - 1º quartil (25%): 3100,00
-  - 3º quartil (75%): 8900,00
+- Estatísticas descritivas com `.describe()` na coluna de salário:
+  - **Query 1** (107 registros):
+    - Média: 6461,83 | Mediana: 6200,00 | Mínimo: 2100,00 | Máximo: 24000,00
+    - Desvio padrão: 3909,58 | 1º quartil: 3100,00 | 3º quartil: 8900,00
+  - **Query 2** (106 registros):
+    - Média: 6456,75 | Mediana: 6150,00 | Mínimo: 2100,00 | Máximo: 24000,00
+    - Desvio padrão: 3927,80 | 1º quartil: 3100,00 | 3º quartil: 8950,00
 
 ## Gráfico
 
@@ -69,6 +68,7 @@ Foi criado um **boxplot** de salário por departamento (arquivo `boxplot_salario
 ## Principais resultados / Insights
 
 - A média salarial da empresa é de 6461,83, e a mediana é 6200,00 — valores próximos, sugerindo uma distribuição relativamente equilibrada, sem uma concentração extrema de valores muito altos puxando a média para cima.
+- A distribuição salarial por região (Query 2) é muito próxima da distribuição por departamento (Query 1) — médias e medianas quase idênticas — o que é esperado, já que as duas queries descrevem majoritariamente o mesmo grupo de funcionários sob ângulos diferentes.
 - Os departamentos de **Shipping** e **Sales** concentram o maior número de funcionários e também a maior variação salarial entre eles, indicando que merecem atenção especial do RH.
 - Departamentos como **Purchasing**, **Finance** e **IT** também apresentam diferenças salariais internas, porém com menos funcionários envolvidos.
 - Recomendação ao RH: investigar as causas dessas diferenças salariais dentro de um mesmo departamento — por exemplo, benefícios individuais (como triênios ou ajustes de custo de vida), diferenças na rotina de trabalho, ou tempo de empresa.
@@ -85,5 +85,5 @@ Foi criado um **boxplot** de salário por departamento (arquivo `boxplot_salario
 ## Sugestões de melhoria futuras
 - Criar também um histograma da distribuição geral de salários, além do boxplot por departamento
 - Aprofundar a investigação das causas das diferenças salariais dentro dos departamentos (ex: cruzar com tempo de empresa de forma mais estruturada)
-- Criar um boxplot comparando salários por região, além de por departamento.
+- Criar um boxplot comparando salários por região, além de por departamento
 ```
