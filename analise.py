@@ -49,6 +49,7 @@ plt.xticks(rotation=45)
 plt.title('Distribuição de Salário por Departamento')
 plt.xlabel('Departamento')
 plt.ylabel('Salário')
+plt.tight_layout()
 plt.savefig('boxplot_salario_departamento.png')
 plt.show()
 
