@@ -1,6 +1,4 @@
-
 # Projeto-HR-VisualizacaoDados-T1
-
 
 ```
 # Análise de Dados de RH — Salários, Cargos e Distribuição Regional
@@ -81,6 +79,12 @@ Foi criado um **boxplot** de salário por departamento (arquivo `boxplot_salario
 2. Ter uma conta no [Oracle FreeSQL](https://apex.oracle.com/database/freesql/) com acesso ao schema HR (ou usar diretamente os arquivos `query_01.csv` e `query_02.csv` já incluídos no repositório)
 3. Instalar as bibliotecas necessárias: `pip install pandas matplotlib`
 4. Executar o arquivo `analise.py` para gerar a EDA e o gráfico
+
+
+## Link para meu vídeo mostrando o projeto
+
+https://www.loom.com/share/5f611198f3114b7fa7334d1805a0cdc0
+
 
 ## Sugestões de melhoria futuras
 - Criar também um histograma da distribuição geral de salários, além do boxplot por departamento
